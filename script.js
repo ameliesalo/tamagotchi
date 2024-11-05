@@ -45,7 +45,7 @@ btnFeed.addEventListener('click', () =>{
 const playInterval = setInterval(() => {
     play--
 
-    if(play == 51){
+    if(play <= 51){
         blob.classList.remove('feedMe')
     }
     if(play <= 50){
@@ -66,7 +66,7 @@ btnPlay.addEventListener('click', () =>{
 const cuddleInterval = setInterval(() => {
     cuddle++
 
-    if(cuddle == 49){
+    if(cuddle >= 49){
         blob.classList.remove('playNow')
     }
     if(cuddle >= 50){
@@ -88,7 +88,7 @@ btnCuddle.addEventListener('click', () =>{
 const sleepInterval = setInterval(() =>{
     sleep--
 
-    if(sleep == 51){
+    if(sleep <= 51){
         blob.classList.remove('cuddleMe')
     }
     if(sleep <= 50){
