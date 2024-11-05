@@ -63,8 +63,14 @@ img{
 
 #ground{
     background-color: darkgreen;
+    color: antiquewhite;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: larger;
     width: 100vw;
     height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cuddleMe{
@@ -86,7 +92,7 @@ img{
 #status{
     width: 20vw;
     height: 30vh;
-    border: solid black 1px;
+    border: solid black 2px;
     display: flex;
     flex-direction: column;
 }
