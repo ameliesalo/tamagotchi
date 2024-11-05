@@ -18,20 +18,20 @@ button{
     height: 10vh;
 }
 
-#feed{
+#btnfeed{
     background-color: chocolate;
 }
 
-#play{
+#btnplay{
     background-color: chartreuse;
 }
 
-#cuddle{
+#btncuddle{
     background-color: crimson;
     color: antiquewhite;
 }
 
-#sleep{
+#btnsleep{
     background-color: blue;
     color: antiquewhite;
 }
@@ -49,8 +49,16 @@ main{
 .blob{
     width: 20vw;
     height: 20vh;
-    background-color: chartreuse;
+    background-color: rgb(255, 166, 0);
     border: solid black 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 10vw;
+    height: 10vh;
 }
 
 #ground{
@@ -60,19 +68,19 @@ main{
 }
 
 .cuddleMe{
-    background-color: palevioletred;
+    background-color: crimson;
 }
 
 .playNow{
-    background-color: black;
+    background-color: chartreuse;
 }
 
 .feedMe{
-    background-color: aquamarine;
+    background-color: chocolate;
 }
 
 .sleepNow{
-    background-color: antiquewhite;
+    background-color: blue;
 }
 
 #status{
