@@ -3,7 +3,8 @@ let btnPlay = document.querySelector('#btnplay')
 let btnCuddle = document.querySelector('#btncuddle')
 let btnSleep = document.querySelector('#btnsleep')
 
-let blob = document.querySelector('.blob')
+let blob = {}
+let blobClass = document.querySelector('.blob')
 
 let feed = document.querySelector('#feed')
 let play = document.querySelector('#play')
@@ -18,14 +19,14 @@ else {
         feed: 0,
         maxFeed: 100,
 
-        play: 100,
-        minPlay: 0,
+        play: 0,
+        maxPlay: 100,
 
         cuddle: 0,
         maxCuddle: 100,
 
-        sleep: 100,
-        minSleep: 0
+        sleep: 0,
+        maxSleep: 100
     }
 }
 
@@ -35,11 +36,10 @@ const feedInterval = setInterval(() => {
     blob.feed++
 
     if(blob.feed >= 50){
-        blob.classList.add('feedMe')
+        blobClass.classList.add('feedMe')
     }
 
     if(blob.feed === blob.maxFeed){
-        clearInterval(feedInterval)
         gameOver()
     }
        
@@ -59,16 +59,15 @@ btnFeed.addEventListener('click', () =>{
 })
 
 const playInterval = setInterval(() => {
-    blob.play--
+    blob.play++
 
-    if(blob.play <= 51){
-        blob.classList.remove('feedMe')
+    if(blob.play >= 51){
+        blobClass.classList.remove('feedMe')
     }
-    if(blob.play <= 50){
-        blob.classList.add('playNow')}
+    if(blob.play >= 50){
+        blobClass.classList.add('playNow')}
 
-    if(blob.play === blob.minPlay){
-        clearInterval(playInterval)
+    if(blobClass.play === blob.maxPlay){
         gameOver()
     }
    
@@ -77,9 +76,9 @@ save()
 }, 2000)
 
 btnPlay.addEventListener('click', () =>{
-    blob.play += 5
+    blob.play -= 5
 
-    if(blob.play = 100){
+    if(blob.play === blob.maxPlay){
         btnPlay.disabled = true
     }
     else{
@@ -91,14 +90,13 @@ const cuddleInterval = setInterval(() => {
     blob.cuddle++
 
     if(blob.cuddle >= 49){
-        blob.classList.remove('playNow')
+        blobClass.classList.remove('playNow')
     }
     if(blob.cuddle >= 50){
-        blob.classList.add('cuddleMe')
+       blobClass.classList.add('cuddleMe')
     }
 
     if(blob.cuddle === blob.maxCuddle){
-        clearInterval(cuddleInterval)
         gameOver()
     }
     
@@ -117,17 +115,16 @@ btnCuddle.addEventListener('click', () =>{
 })
 
 const sleepInterval = setInterval(() =>{
-    blob.sleep--
+    blob.sleep++
 
-    if(blob.sleep <= 51){
-        blob.classList.remove('cuddleMe')
+    if(blob.sleep >= 51){
+        blobClass.classList.remove('cuddleMe')
     }
-    if(blob.sleep <= 50){
-        blob.classList.add('sleepNow')
+    if(blob.sleep >= 50){
+        blobClass.classList.add('sleepNow')
     }
 
-    if(blob.sleep === minSleep){
-        clearInterval(sleepInterval)
+    if(blob.sleep === maxSleep){
         gameOver()
     }
     
@@ -136,7 +133,7 @@ save()
 }, 4000)
 
 btnSleep.addEventListener('click', () =>{
-    blob.sleep += 30
+    blob.sleep -= 30
 
     if(blob.sleep = 100){
         btnSleep.disabled = true
@@ -152,26 +149,26 @@ function displayBlobStatus(){
     blobStatus.innerHTML = `
     <h1> STATUS <h1>
     <p> Hunger: ${blob.feed} / ${blob.maxFeed} <p>
-    <p> Play: ${blob.play} / ${blob.minPlay} <p>
+    <p> Play: ${blob.play} / ${blob.maxPlay} <p>
     <p> Cuddle: ${blob.cuddle} / ${blob.maxCuddle} <p> 
-    <p> Sleep: ${blob.sleep} / ${blob.minSleep} <p>
+    <p> Sleep: ${blob.sleep} / ${blob.maxSleep} <p>
     `
 }
 
 function gameOver(){
-    if(feed === 100 || play === 0 || cuddle === 100 || sleep === 0){
+    if(blob.feed === blob.maxFeed || blob.play === blob.maxPlay || blob.cuddle === blob.maxCuddle || blob.sleep === blob.maxSleep){
         blob = {
             feed: 0,
             maxFeed: 100,
     
-            play: 100,
-            minPlay: 0,
+            play: 0,
+            maxPlay: 100,
     
             cuddle: 0,
             maxCuddle: 100,
     
-            sleep: 100,
-            minSleep: 0
+            sleep: 0,
+            maxSleep: 100
         }
     }
 }
