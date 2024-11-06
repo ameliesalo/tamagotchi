@@ -29,6 +29,7 @@ else {
     }
 }
 
+console.log(blob)
 
 const feedInterval = setInterval(() => {
     blob.feed++
