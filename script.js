@@ -41,9 +41,9 @@ const feedInterval = setInterval(() => {
     if(blob.feed === blob.maxFeed){
         clearInterval(feedInterval)
     }
-   
-save()    
+       
 displayBlobStatus()
+save()
 }, 1000)
 
 btnFeed.addEventListener('click', () =>{
@@ -69,9 +69,9 @@ const playInterval = setInterval(() => {
     if(blob.play === blob.minPlay){
         clearInterval(playInterval)
     }
-
-save()    
+   
 displayBlobStatus()
+save() 
 }, 2000)
 
 btnPlay.addEventListener('click', () =>{
@@ -98,9 +98,9 @@ const cuddleInterval = setInterval(() => {
     if(blob.cuddle === blob.maxCuddle){
         clearInterval(cuddleInterval)
     }
-
-save()    
+    
 displayBlobStatus()
+save()
 }, 3000)
 
 btnCuddle.addEventListener('click', () =>{
@@ -126,9 +126,9 @@ const sleepInterval = setInterval(() =>{
     if(blob.sleep === minSleep){
         clearInterval(sleepInterval)
     }
-
-save()    
+    
 displayBlobStatus()
+save()
 }, 4000)
 
 btnSleep.addEventListener('click', () =>{
@@ -155,7 +155,7 @@ function displayBlobStatus(){
 }
 
 function gameOver(){
-    if(feed === 100 && play === 0 && cuddle === 100 && sleep === 0){
+    if(feed === 100 || play === 0 || cuddle === 100 || sleep === 0){
         blob = {
             feed: 0,
             maxFeed: 100,
@@ -173,11 +173,11 @@ function gameOver(){
 }
 
 function save() {
-    console.log("saving data")
     localStorage.setItem('blobData', JSON.stringify(blob))
 }
 
 function load() {
-    console.log("loading data")
     return localStorage.getItem('blobData')
 }
+
+gameOver()
