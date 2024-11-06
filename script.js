@@ -40,6 +40,7 @@ const feedInterval = setInterval(() => {
 
     if(blob.feed === blob.maxFeed){
         clearInterval(feedInterval)
+        gameOver()
     }
        
 displayBlobStatus()
@@ -68,6 +69,7 @@ const playInterval = setInterval(() => {
 
     if(blob.play === blob.minPlay){
         clearInterval(playInterval)
+        gameOver()
     }
    
 displayBlobStatus()
@@ -97,6 +99,7 @@ const cuddleInterval = setInterval(() => {
 
     if(blob.cuddle === blob.maxCuddle){
         clearInterval(cuddleInterval)
+        gameOver()
     }
     
 displayBlobStatus()
@@ -125,6 +128,7 @@ const sleepInterval = setInterval(() =>{
 
     if(blob.sleep === minSleep){
         clearInterval(sleepInterval)
+        gameOver()
     }
     
 displayBlobStatus()
@@ -180,4 +184,3 @@ function load() {
     return localStorage.getItem('blobData')
 }
 
-gameOver()
