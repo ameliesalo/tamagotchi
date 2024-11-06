@@ -10,101 +10,135 @@ let play = document.querySelector('#play')
 let cuddle = document.querySelector('#cuddle')
 let sleep = document.querySelector('#sleep')
 
-feed = 0
-let maxFeed = 100
+if(load()) {
+    blob = JSON.parse(localStorage.getItem('blobData'))
+}
+else {
+    blob = {
+        feed: 0,
+        maxFeed: 100,
 
-play = 100
-let minPlay = 0
+        play: 100,
+        minPlay: 0,
 
-cuddle = 0
-let maxCuddle = 100
+        cuddle: 0,
+        maxCuddle: 100,
 
-sleep = 100
-let minSleep = 0
+        sleep: 100,
+        minSleep: 0
+    }
+}
 
 
 const feedInterval = setInterval(() => {
-    feed++
+    blob.feed++
 
-    if(feed >= 50){
+    if(blob.feed >= 50){
         blob.classList.add('feedMe')
     }
 
-    if(feed === maxFeed){
+    if(blob.feed === blob.maxFeed){
         clearInterval(feedInterval)
     }
    
-    
+save()    
 displayBlobStatus()
 }, 1000)
 
 btnFeed.addEventListener('click', () =>{
-    feed -= 5
+    blob.feed -= 5
+
+    if(blob.feed = 0){
+        btnFeed.disabled = true
+    }
+    else{
+        btnFeed.disabled = false
+    }
 })
 
 const playInterval = setInterval(() => {
-    play--
+    blob.play--
 
-    if(play <= 51){
+    if(blob.play <= 51){
         blob.classList.remove('feedMe')
     }
-    if(play <= 50){
-        blob.classList.add('.playNow')}
+    if(blob.play <= 50){
+        blob.classList.add('playNow')}
 
-    if(play === minPlay){
+    if(blob.play === blob.minPlay){
         clearInterval(playInterval)
     }
 
-    
+save()    
 displayBlobStatus()
 }, 2000)
 
 btnPlay.addEventListener('click', () =>{
-    play += 5
+    blob.play += 5
+
+    if(blob.play = 100){
+        btnPlay.disabled = true
+    }
+    else{
+        btnPlay.disabled = false
+    }
 })
 
 const cuddleInterval = setInterval(() => {
-    cuddle++
+    blob.cuddle++
 
-    if(cuddle >= 49){
+    if(blob.cuddle >= 49){
         blob.classList.remove('playNow')
     }
-    if(cuddle >= 50){
-        blob.classList.add('.cuddleMe')
+    if(blob.cuddle >= 50){
+        blob.classList.add('cuddleMe')
     }
 
-    if(cuddle === maxCuddle){
+    if(blob.cuddle === blob.maxCuddle){
         clearInterval(cuddleInterval)
     }
 
-    
+save()    
 displayBlobStatus()
 }, 3000)
 
 btnCuddle.addEventListener('click', () =>{
-    cuddle -= 5
+    blob.cuddle -= 5
+    if(blob.cuddle = 0){
+        btnCuddle.disabled = true
+    }
+    else{
+        btnCuddle.disabled = false
+    }
 })
 
 const sleepInterval = setInterval(() =>{
-    sleep--
+    blob.sleep--
 
-    if(sleep <= 51){
+    if(blob.sleep <= 51){
         blob.classList.remove('cuddleMe')
     }
-    if(sleep <= 50){
-        blob.classList.add('.sleepNow')
+    if(blob.sleep <= 50){
+        blob.classList.add('sleepNow')
     }
 
-    if(sleep === minSleep){
+    if(blob.sleep === minSleep){
         clearInterval(sleepInterval)
     }
 
-    
+save()    
 displayBlobStatus()
 }, 4000)
 
 btnSleep.addEventListener('click', () =>{
-    sleep += 30
+    blob.sleep += 30
+
+    if(blob.sleep = 100){
+        btnSleep.disabled = true
+    }
+    else{
+        btnSleep.disabled = false
+    }
 })
 
 function displayBlobStatus(){
@@ -112,20 +146,37 @@ function displayBlobStatus(){
 
     blobStatus.innerHTML = `
     <h1> STATUS <h1>
-    <p> Hunger: ${feed} / ${maxFeed} <p>
-    <p> Play: ${play} / ${minPlay} <p>
-    <p> Cuddle: ${cuddle} / ${maxCuddle} <p> 
-    <p> Sleep: ${sleep} / ${minSleep} <p>
+    <p> Hunger: ${blob.feed} / ${blob.maxFeed} <p>
+    <p> Play: ${blob.play} / ${blob.minPlay} <p>
+    <p> Cuddle: ${blob.cuddle} / ${blob.maxCuddle} <p> 
+    <p> Sleep: ${blob.sleep} / ${blob.minSleep} <p>
     `
 }
 
 function gameOver(){
     if(feed === 100 && play === 0 && cuddle === 100 && sleep === 0){
-       blobStatus.innerHTML = ``
-    }this(
-        blobStatus.innerHTML = `
-        <h1> STATUS <h1>
-        <p> DU DOG! <p>
-        `
-    )
+        blob = {
+            feed: 0,
+            maxFeed: 100,
+    
+            play: 100,
+            minPlay: 0,
+    
+            cuddle: 0,
+            maxCuddle: 100,
+    
+            sleep: 100,
+            minSleep: 0
+        }
+    }
+}
+
+function save() {
+    console.log("saving data")
+    localStorage.setItem('blobData', JSON.stringify(blob))
+}
+
+function load() {
+    console.log("loading data")
+    return localStorage.getItem('blobData')
 }
