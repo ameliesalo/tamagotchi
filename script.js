@@ -50,7 +50,7 @@ save()
 btnFeed.addEventListener('click', () =>{
     blob.feed -= 5
 
-    if(blob.feed = 0){
+    if(blob.feed === 0){
         btnFeed.disabled = true
     }
     else{
@@ -67,8 +67,9 @@ const playInterval = setInterval(() => {
     if(blob.play >= 50){
         blobClass.classList.add('playNow')}
 
-    if(blobClass.play === blob.maxPlay){
+    if(blob.play === blob.maxPlay){
         gameOver()
+
     }
    
 displayBlobStatus()
@@ -78,7 +79,7 @@ save()
 btnPlay.addEventListener('click', () =>{
     blob.play -= 5
 
-    if(blob.play === blob.maxPlay){
+    if(blob.play === 0){
         btnPlay.disabled = true
     }
     else{
@@ -106,7 +107,7 @@ save()
 
 btnCuddle.addEventListener('click', () =>{
     blob.cuddle -= 5
-    if(blob.cuddle = 0){
+    if(blob.cuddle === 0){
         btnCuddle.disabled = true
     }
     else{
@@ -135,7 +136,7 @@ save()
 btnSleep.addEventListener('click', () =>{
     blob.sleep -= 30
 
-    if(blob.sleep = 100){
+    if(blob.sleep === 0){
         btnSleep.disabled = true
     }
     else{
@@ -148,10 +149,10 @@ function displayBlobStatus(){
 
     blobStatus.innerHTML = `
     <h1> STATUS <h1>
-    <p> Hunger: ${blob.feed} / ${blob.maxFeed} <p>
-    <p> Play: ${blob.play} / ${blob.maxPlay} <p>
-    <p> Cuddle: ${blob.cuddle} / ${blob.maxCuddle} <p> 
-    <p> Sleep: ${blob.sleep} / ${blob.maxSleep} <p>
+    <p> Hunger: ${blob.feed}    /   ${blob.maxFeed} <p>
+    <p> Play:   ${blob.play}    /   ${blob.maxPlay} <p>
+    <p> Cuddle: ${blob.cuddle}  /   ${blob.maxCuddle} <p> 
+    <p> Sleep:  ${blob.sleep}   /   ${blob.maxSleep} <p>
     `
 }
 
