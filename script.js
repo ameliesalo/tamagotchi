@@ -165,15 +165,19 @@ function gameOver(){
         blob = {
             feed: 0,
             maxFeed: 100,
+            feedInterval,
     
             play: 0,
             maxPlay: 100,
+            playInterval,
     
             cuddle: 0,
             maxCuddle: 100,
+            cuddleInterval,
     
             sleep: 0,
-            maxSleep: 100
+            maxSleep: 100,
+            sleepInterval
         }
     }
 }
