@@ -40,6 +40,7 @@ const feedInterval = setInterval(() => {
     }
 
     if(blob.feed === blob.maxFeed){
+        clearInterval(feedInterval)
         gameOver()
     }
        
@@ -68,6 +69,7 @@ const playInterval = setInterval(() => {
         blobClass.classList.add('playNow')}
 
     if(blob.play === blob.maxPlay){
+        clearInterval(playInterval)
         gameOver()
 
     }
@@ -98,6 +100,7 @@ const cuddleInterval = setInterval(() => {
     }
 
     if(blob.cuddle === blob.maxCuddle){
+        clearInterval(cuddleInterval)
         gameOver()
     }
     
@@ -126,6 +129,7 @@ const sleepInterval = setInterval(() =>{
     }
 
     if(blob.sleep === maxSleep){
+        clearInterval(sleepInterval)
         gameOver()
     }
     
